@@ -65,10 +65,106 @@ export const config = {
             ]
         },
     },
+    database: {
+        'PostgreSQL-Docker': {
+            script: 'db-postgresql.sh',
+            params: (answers) => [
+                answers.appName, 
+                answers.POSTGRES_USER, 
+                answers.POSTGRES_PASSWORD, 
+                answers.POSTGRES_DB, 
+                answers.PORT
+            ],
+            questions: [
+                {
+                    type: 'input',
+                    name: 'workdir',
+                    message: 'Work Directory',
+                    default: DEFAULT_WORK_DIRECTORY,
+                },
+                {
+                    type: 'input',
+                    name: 'appName',
+                    message: 'App Name',
+                    default: 'my-database',
+                },
+                {
+                    type: 'input',
+                    name: 'POSTGRES_USER',
+                    message: 'Postgres User',
+                    default: 'postgres',
+                },
+                {
+                    type: 'input',
+                    name: 'POSTGRES_PASSWORD',
+                    message: 'Postgres Password',
+                },
+                {
+                    type: 'input',
+                    name: 'POSTGRES_DB',
+                    message: 'Database Name',
+                    default: 'mydatabase',
+                },
+                {
+                    type: 'input',
+                    name: 'PORT',
+                    message: 'Port',
+                    default: '5432',
+                }
+            ]
+        },
+        'MySQL-Docker': {
+            script: 'db-mysql.sh',
+            params: (answers) => [
+                answers.appName, 
+                answers.MYSQL_USER, 
+                answers.MYSQL_PASSWORD, 
+                answers.MYSQL_DATABASE, 
+                answers.PORT
+            ],
+            questions: [
+                {
+                    type: 'input',
+                    name: 'workdir',
+                    message: 'Work Directory',
+                    default: DEFAULT_WORK_DIRECTORY,
+                },
+                {
+                    type: 'input',
+                    name: 'appName',
+                    message: 'App Name',
+                    default: 'my-database',
+                },
+                {
+                    type: 'input',
+                    name: 'MYSQL_USER',
+                    message: 'MySQL User',
+                    default: 'root',
+                },
+                {
+                    type: 'input',
+                    name: 'MYSQL_PASSWORD',
+                    message: 'MySQL Password',
+                },
+                {
+                    type: 'input',
+                    name: 'MYSQL_DATABASE',
+                    message: 'Database Name',
+                    default: 'mydatabase',
+                },
+                {
+                    type: 'input',
+                    name: 'PORT',
+                    message: 'Port',
+                    default: '3306',
+                }
+            ]
+        },
+    },
     test: {
         'javascript': {
             script: 'javascript-test.sh',
-            params: (answers) => [answers.websiteName],
+            params: () => [],
             questions: [
                 {
                     type: 'input',
@@ -80,7 +176,7 @@ export const config = {
         },
         'python': {
             script: 'python-test.sh',
-            params: (answers) => [answers.websiteName],
+            params: () => [],
             questions: [
                 {
                     type: 'input',
@@ -90,5 +186,5 @@ export const config = {
                 }
             ]
         }
-    }
+    },
 };

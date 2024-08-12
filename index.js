@@ -6,7 +6,7 @@ const categoryQuestion = [
     {
         type: 'list',
         name: 'category',
-        message: 'What do you want to create?',
+        message: 'Category',
         choices: Object.keys(config),
         default: 'app'
     }
@@ -20,7 +20,7 @@ function ask() {
             {
                 type: 'list',
                 name: 'script',
-                message: `Select the ${categoryAnswer.category.slice(0, -1)} script you want to run`,
+                message: `Script`,
                 choices: scriptsInCategory,
                 default: scriptsInCategory[0]
             }
@@ -30,7 +30,6 @@ function ask() {
             const selectedScript = config[categoryAnswer.category][mainAnswer.script];
 
             inquirer.prompt(selectedScript.questions).then((answers) => {
-                // console.log("answers", answers);
                 const params = selectedScript.params(answers);
                 
                 const scriptPath = `${SCRIPTS_DIRECTORY}/${selectedScript.script}`;
