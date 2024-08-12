@@ -3,8 +3,8 @@ const DEFAULT_WORK_DIRECTORY = '/Users/dmitrygrinko/Projects/';
 export const SCRIPTS_DIRECTORY = '/Users/dmitrygrinko/Projects/new/scripts';
 
 export const config = {
-    app: {
-        'Mobile: React Native App': {
+    mobile: {
+        'React Native App': {
             script: 'mobile-react-native.sh',
             params: (answers) => {
                 const params = [
@@ -46,7 +46,122 @@ export const config = {
                 }
             ]
         },
-        'Backend: Rest API, nodejs, express': {
+    },
+    frontend: {
+        Angular: {
+            script: 'angular.sh',
+            params: (answers) => [
+                answers.appName, 
+                answers.style, 
+                answers.routing, 
+                answers.strict, 
+                answers.skipTests, 
+                answers.prefix, 
+                answers.viewEncapsulation, 
+                answers.skipGit, 
+                answers.inlineStyle, 
+                answers.inlineTemplate, 
+                answers.packageManager,
+            ],
+            questions: [
+                {
+                    type: 'input',
+                    name: 'workdir',
+                    message: 'Work Directory',
+                    default: DEFAULT_WORK_DIRECTORY,
+                },
+                {
+                    type: 'input',
+                    name: 'appName',
+                    message: 'Name',
+                    default: 'angular-website',
+                },
+                {
+                    type: 'list',
+                    name: 'style',
+                    message: 'Choose a stylesheet format',
+                    choices: ['css', 'scss', 'sass', 'less', 'styl'],
+                    default: 'css',
+                },
+                {
+                    type: 'confirm',
+                    name: 'routing',
+                    message: 'Do you want to include Angular routing?',
+                    default: false,
+                },
+                {
+                    type: 'confirm',
+                    name: 'strict',
+                    message: 'Do you want to enable strict mode?',
+                    default: true,
+                },
+                {
+                    type: 'confirm',
+                    name: 'skipTests',
+                    message: 'Do you want to skip the creation of test files?',
+                    default: false,
+                },
+                {
+                    type: 'input',
+                    name: 'prefix',
+                    message: 'Prefix to apply to generated selectors',
+                    default: 'app',
+                },
+                {
+                    type: 'list',
+                    name: 'viewEncapsulation',
+                    message: 'Choose a view encapsulation strategy',
+                    choices: ['None', 'Emulated', 'Native', 'ShadowDom'],
+                    default: 'None',
+                },
+                {
+                    type: 'confirm',
+                    name: 'skipGit',
+                    message: 'Do you want to skip initializing a git repository?',
+                    default: false,
+                },
+                {
+                    type: 'confirm',
+                    name: 'inlineStyle',
+                    message: 'Do you want to include styles inline in the component?',
+                    default: false,
+                },
+                {
+                    type: 'confirm',
+                    name: 'inlineTemplate',
+                    message: 'Do you want to include the template inline in the component?',
+                    default: false,
+                },
+                {
+                    type: 'list',
+                    name: 'packageManager',
+                    message: 'Choose a package manager',
+                    choices: ['npm', 'yarn', 'pnpm'],
+                    default: 'npm',
+                },
+            ]  
+        },
+        React: {
+            script: 'react.sh',
+            params: (answers) => [answers.appName],
+            questions: [
+                {
+                    type: 'input',
+                    name: 'workdir',
+                    message: 'Work Directory',
+                    default: DEFAULT_WORK_DIRECTORY,
+                },
+                {
+                    type: 'input',
+                    name: 'appName',
+                    message: 'Name',
+                    default: 'react-website',
+                }
+            ]  
+        },
+    },
+    backend: {
+        'NodeJS Rest API': {
             script: 'backend-rest-api-node-express.sh',
             params: (answers) => [answers.appName],
             questions: [
